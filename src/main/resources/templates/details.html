@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{head.html}">
+</head>
+<body>
+      <div class="container" th:insert="~{navbar.html}"></div>
+
+      <div class="container mt-5">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form th:action="@{'/saveapplication'}" method="post" th:if="${applicatioon != null}">
+                <input type="hidden" name="id" th:value="${applicatioon.id}">
+                <label>ФИО:</label> <br>
+                <input type="text" size="80" name="userName" th:value="${applicatioon.userName}">
+                  <br>
+                <label>Курс:</label> <br>
+                <select  name="courseName" style="width: 99%;">
+                    <option th:text="${applicatioon.courseName}"></option>
+                    <option>Java Start</option>
+                    <option>Java PRO</option>
+                    <option>Python</option>
+                    <option>PHP</option>
+                    <option>UI/UX</option>
+                    <option>Laravel</option>
+                </select>
+                  <br>
+                <label>Телефон:</label> <br>
+                <input  type="tel" size="80" name="phoneNumber" th:value="${applicatioon.phoneNumber}">
+                  <br>
+                <label>Комментарии:</label> <br>
+                <textarea  rows="6" cols="83" name="commentary" th:text="${applicatioon.commentary}"></textarea>
+                  <br><br>
+                  <button class="btn btn-success">ОБРАБОТАТЬ ЗАЯВКУ</button>
+              </form>
+
+                <br>
+
+              <form th:action="@{'/deleteapplication'}" method="post" th:if="${applicatioon != null}">
+                  <input type="hidden" name="id" th:value="${applicatioon.id}">
+                  <button class="btn btn-danger" size="50">УДАЛИТЬ ЗАЯВКУ</button>
+              </form>
+            </div>
+        </div>
+      </div>
+</body>
+</html>
