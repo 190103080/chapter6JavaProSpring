@@ -15,15 +15,9 @@
                 <input type="text" size="80" name="userName" th:value="${applicatioon.userName}">
                   <br>
                 <label>Курс:</label> <br>
-                <select  name="courseName" style="width: 99%;">
-                    <option th:text="${applicatioon.courseName}"></option>
-                    <option>Java Start</option>
-                    <option>Java PRO</option>
-                    <option>Python</option>
-                    <option>PHP</option>
-                    <option>UI/UX</option>
-                    <option>Laravel</option>
-                </select>
+                  <select  name="courses.id" style="width: 99%;">
+                      <option th:each="cour : ${courses}" th:value="${cour.id}" th:text="${cour.name} + ' - ' + ${cour.price} + ' USD'" th:selected="${cour.id == applicatioon.courses.id}"></option>
+                  </select>
                   <br>
                 <label>Телефон:</label> <br>
                 <input  type="tel" size="80" name="phoneNumber" th:value="${applicatioon.phoneNumber}">

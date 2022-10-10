@@ -29,4 +29,7 @@ public class Application {
     @Column(name = "handl_ed")
     private boolean handled;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Courses courses;
+
 }

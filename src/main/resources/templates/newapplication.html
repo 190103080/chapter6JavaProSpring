@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <h4 th:style="${ap.handled==false?'color:red;':'color:green;'}" th:if="${ap.handled==false}">*(Новая)</h4>
                             <h3 class="card-title">Заявка от <strong th:text="${ap.userName}"></strong></h3>
-                            <h6 class="card-subtitle mb-2 text-muted" disabled="">Курс: <strong th:text="${ap.courseName}"></strong></h6>
+                            <h6 class="card-subtitle mb-2 text-muted" disabled="">Курс: <strong th:text="${ap.courses.name}"></strong></h6>
                             <p class="card-text" th:text="${ap.commentary}"></p>
                             <p class="card-footer" th:text="${ap.phoneNumber}"></p>
                             <a th:href="@{'/details/' + ${ap.id}}">Подробнее</a>

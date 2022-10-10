@@ -15,14 +15,8 @@
                 <input placeholder="ФИО:" type="text" size="80" name="userName">
                   <br>
                 <label>Курс:</label> <br>
-                <select  name="courseName" style="width: 99%;">
-                    <option selected>Выберите курс</option>
-                    <option>Java Start</option>
-                    <option>Java PRO</option>
-                    <option>Python</option>
-                    <option>PHP</option>
-                    <option>UI/UX</option>
-                    <option>Laravel</option>
+                <select  name="courses.id" style="width: 99%;">
+                    <option th:each="cour : ${courses}" th:value="${cour.id}" th:text="${cour.name} + ' - ' + ${cour.price} + ' USD'"></option>
                 </select>
                   <br>
                 <label>Телефон:</label> <br>
