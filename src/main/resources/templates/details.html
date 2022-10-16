@@ -25,10 +25,52 @@
                 <label>Комментарии:</label> <br>
                 <textarea  rows="6" cols="83" name="commentary" th:text="${applicatioon.commentary}"></textarea>
                   <br><br>
-                  <button class="btn btn-success">ОБРАБОТАТЬ ЗАЯВКУ</button>
-              </form>
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" th:if="${applicatioon.handled == false}">
+                      ОБРАБОТАТЬ ЗАЯВКУ
+                  </button>
 
-                <br>
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="staticBackdropLabel">Выберите оператора</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th scope="col">Выбрать</th>
+                                                  <th scope="col">Имя</th>
+                                                  <th scope="col">Фамилия</th>
+                                                  <th scope="col">Департамент</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr th:each="op: ${operators}">
+                                                  <form th:action="@{'/assignoperators'}" method="post">
+                                                      <input type="hidden" name="application_id" th:value="${applicatioon.id}">
+                                                      <input type="hidden" name="operators_id" th:value="${op.id}">
+                                                      <th scope="row"> <input type="checkbox" th:value="${op.id}" th:field="*{operators}"> </th>
+                                                      <td th:text="${op.name}"></td>
+                                                      <td th:text="${op.surname}"></td>
+                                                      <td th:text="${op.departament}"></td>
+                                                  </form>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                  <button class="btn btn-primary">Назначить</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
 
               <form th:action="@{'/deleteapplication'}" method="post" th:if="${applicatioon != null}">
                   <input type="hidden" name="id" th:value="${applicatioon.id}">

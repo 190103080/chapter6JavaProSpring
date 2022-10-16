@@ -1,12 +1,17 @@
 package exercisefor.javaspring.exsixjavaspringpro.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "a_applications")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Application {
 
     @Id
@@ -31,5 +36,8 @@ public class Application {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Courses courses;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Operators> operators;
 
 }
